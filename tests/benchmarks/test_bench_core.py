@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from package_name.core import greet
+from pyprojecttest.core import greet
 
 
 @pytest.mark.benchmark

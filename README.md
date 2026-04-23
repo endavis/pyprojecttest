@@ -1,11 +1,11 @@
-# __PROJECT_NAME__
+# pyprojecttest
 
-[![CI](https://github.com/__GH_OWNER__/__PACKAGE_NAME__/actions/workflows/ci.yml/badge.svg)](https://github.com/__GH_OWNER__/__PACKAGE_NAME__/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/__GH_OWNER__/__PACKAGE_NAME__/branch/main/graph/badge.svg)](https://codecov.io/gh/__GH_OWNER__/__PACKAGE_NAME__)
-[![PyPI version](https://badge.fury.io/py/__PYPI_NAME__.svg)](https://badge.fury.io/py/__PYPI_NAME__)
+[![CI](https://github.com/endavis/pyprojecttest/actions/workflows/ci.yml/badge.svg)](https://github.com/endavis/pyprojecttest/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/endavis/pyprojecttest/branch/main/graph/badge.svg)](https://codecov.io/gh/endavis/pyprojecttest)
+[![PyPI version](https://badge.fury.io/py/pyprojecttest.svg)](https://badge.fury.io/py/pyprojecttest)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
-__DESCRIPTION__
+A Python project based on pyproject-template
 
 ## Features
 
@@ -16,13 +16,13 @@ __DESCRIPTION__
 ## Installation
 
 ```bash
-pip install __PYPI_NAME__
+pip install pyprojecttest
 ```
 
 ## Quick Start
 
 ```python
-from __PACKAGE_NAME__ import greet
+from pyprojecttest import greet
 
 # Example usage
 message = greet("Python")
@@ -78,7 +78,7 @@ The script will:
 
 ```bash
 # Clone the template
-git clone https://github.com/username/package_name.git my-project
+git clone https://github.com/endavis/pyprojecttest.git my-project
 cd my-project
 
 # Run the interactive configuration script
@@ -90,7 +90,7 @@ The script will prompt you for:
 - Package name (Python import name)
 - PyPI package name
 - Author name and email
-- GitHub username
+- GitHub endavis
 
 It will automatically:
 - Rename the package directory
@@ -114,8 +114,8 @@ It will automatically:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone repository
-git clone https://github.com/username/package_name.git
-cd __PACKAGE_NAME__
+git clone https://github.com/endavis/pyprojecttest.git
+cd pyprojecttest
 
 # Create virtual environment and install dependencies
 uv sync --all-extras --dev

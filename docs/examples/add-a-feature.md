@@ -65,11 +65,11 @@ Branch naming follows the convention `<type>/<issue>-<description>`.
 
 ## Step 3: Add the Core Module
 
-Create `src/__PACKAGE_NAME__/farewell.py`. The function mirrors the existing
+Create `src/pyprojecttest/farewell.py`. The function mirrors the existing
 `greet()` pattern in `core.py`:
 
 ```python
-"""Farewell functionality for __PACKAGE_NAME__."""
+"""Farewell functionality for pyprojecttest."""
 
 
 def farewell(name: str = "World") -> str:
@@ -99,10 +99,10 @@ Key points:
 ## Step 4: Export from `__init__.py`
 
 Add the new function to the package's public API in
-`src/__PACKAGE_NAME__/__init__.py`:
+`src/pyprojecttest/__init__.py`:
 
 ```python
-"""__PROJECT_NAME__ - __DESCRIPTION__."""
+"""pyprojecttest - A Python project based on pyproject-template."""
 
 from ._version import __version__
 from .core import greet
@@ -116,12 +116,12 @@ Keep `__all__` sorted alphabetically.
 
 ## Step 5: Add a CLI Subcommand
 
-Extend `src/__PACKAGE_NAME__/cli.py` with a `farewell` command. The CLI is a
+Extend `src/pyprojecttest/cli.py` with a `farewell` command. The CLI is a
 **thin adapter** -- it delegates to the core function and handles only I/O
 (printing, exit codes):
 
 ```python
-from __PACKAGE_NAME__.farewell import farewell as _farewell
+from pyprojecttest.farewell import farewell as _farewell
 
 # ... existing code ...
 
@@ -159,7 +159,7 @@ Follow the patterns in `tests/test_example.py`:
 
 import pytest
 
-from __PACKAGE_NAME__.farewell import farewell
+from pyprojecttest.farewell import farewell
 
 
 def test_farewell_default() -> None:
@@ -194,7 +194,7 @@ Follow the patterns in `tests/test_cli.py`:
 
 from click.testing import CliRunner
 
-from __PACKAGE_NAME__.cli import main
+from pyprojecttest.cli import main
 
 
 def test_farewell_default_name() -> None:
@@ -248,7 +248,7 @@ up. In `docs/reference/api.md`, add a section for the farewell module:
 ```markdown
 ## Farewell
 
-::: __PACKAGE_NAME__.farewell
+::: pyprojecttest.farewell
 ```
 
 Then build the docs to make sure everything renders:

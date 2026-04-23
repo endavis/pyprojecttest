@@ -21,7 +21,7 @@ Make sure you have the package installed:
 uv pip install -e .
 
 # Or install from PyPI
-pip install __PYPI_NAME__
+pip install pyprojecttest
 ```
 
 Then run any example:

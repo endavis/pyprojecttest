@@ -1,4 +1,4 @@
-"""Package Name - A short description of your package."""
+"""pyprojecttest - A Python project based on pyproject-template."""
 
 from ._version import __version__
 from .core import greet

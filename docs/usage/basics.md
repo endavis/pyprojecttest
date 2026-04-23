@@ -12,7 +12,7 @@ tags:
 
 This guide covers both package usage and development workflows.
 
-> Looking for the `__PYPI_NAME__` command-line interface? See the
+> Looking for the `pyprojecttest` command-line interface? See the
 > [CLI Guide](cli.md) for the console script, subcommands, and how to
 > extend them.
 
@@ -21,7 +21,7 @@ This guide covers both package usage and development workflows.
 ### Basic Usage
 
 ```python
-from __PACKAGE_NAME__ import greet
+from pyprojecttest import greet
 
 # Simple greeting
 message = greet("World")
@@ -206,7 +206,7 @@ If your package provides a CLI, create convenience tasks:
 def task_run_server():
     """Start development server."""
     return {
-        "actions": ["uv run __PYPI_NAME__ server --debug --port 8080"],
+        "actions": ["uv run pyprojecttest server --debug --port 8080"],
         "title": title_with_actions,
     }
 
@@ -214,9 +214,9 @@ def task_init_db():
     """Initialize database."""
     return {
         "actions": [
-            "uv run __PYPI_NAME__ db create",
-            "uv run __PYPI_NAME__ db migrate",
-            "uv run __PYPI_NAME__ db seed-dev",
+            "uv run pyprojecttest db create",
+            "uv run pyprojecttest db migrate",
+            "uv run pyprojecttest db seed-dev",
         ],
         "title": title_with_actions,
     }
@@ -237,8 +237,8 @@ def task_deploy_dev():
     """Deploy to development environment."""
     return {
         "actions": [
-            "uv run __PYPI_NAME__ validate --env dev",
-            "uv run __PYPI_NAME__ deploy --env dev --auto-approve",
+            "uv run pyprojecttest validate --env dev",
+            "uv run pyprojecttest deploy --env dev --auto-approve",
         ],
         "title": title_with_actions,
     }
@@ -257,7 +257,7 @@ def task_deploy_prod():
 
         # Run deployment
         subprocess.run(
-            "uv run __PYPI_NAME__ deploy --env prod",
+            "uv run pyprojecttest deploy --env prod",
             shell=True,
             check=True
         )
@@ -310,9 +310,9 @@ def task_process_data():
     """Run data processing pipeline."""
     return {
         "actions": [
-            "uv run __PYPI_NAME__ extract --source api --output tmp/raw.json",
-            "uv run __PYPI_NAME__ transform --input tmp/raw.json --output tmp/clean.json",
-            "uv run __PYPI_NAME__ load --input tmp/clean.json --target postgres",
+            "uv run pyprojecttest extract --source api --output tmp/raw.json",
+            "uv run pyprojecttest transform --input tmp/raw.json --output tmp/clean.json",
+            "uv run pyprojecttest load --input tmp/clean.json --target postgres",
         ],
         "title": title_with_actions,
     }
@@ -321,7 +321,7 @@ def task_backup_data():
     """Backup production database."""
     return {
         "actions": [
-            "uv run __PYPI_NAME__ backup create --env prod --output backups/$(date +%Y%m%d-%H%M%S).sql.gz",
+            "uv run pyprojecttest backup create --env prod --output backups/$(date +%Y%m%d-%H%M%S).sql.gz",
         ],
         "title": title_with_actions,
     }
@@ -339,7 +339,7 @@ def task_restore_data():
         latest = backups[0]
         print(f"Restoring from: {latest}")
         subprocess.run(
-            f"uv run __PYPI_NAME__ backup restore --file {latest} --env dev",
+            f"uv run pyprojecttest backup restore --file {latest} --env dev",
             shell=True,
             check=True
         )
@@ -402,7 +402,7 @@ def task_deploy():
 
         # Deploy
         subprocess.run(
-            f"uv run __PYPI_NAME__ deploy --env {env}",
+            f"uv run pyprojecttest deploy --env {env}",
             shell=True,
             check=True
         )
@@ -439,8 +439,8 @@ def task_validate_config():
     """Validate all configuration files."""
     return {
         "actions": [
-            "uv run __PYPI_NAME__ config validate --env dev",
-            "uv run __PYPI_NAME__ config validate --env prod",
+            "uv run pyprojecttest config validate --env dev",
+            "uv run pyprojecttest config validate --env prod",
         ],
         "title": title_with_actions,
     }
@@ -450,8 +450,8 @@ def task_health_check():
     return {
         "actions": [
             "curl -f http://localhost:8000/health || echo 'Service down!'",
-            "uv run __PYPI_NAME__ db ping",
-            "uv run __PYPI_NAME__ cache status",
+            "uv run pyprojecttest db ping",
+            "uv run pyprojecttest cache status",
         ],
         "title": title_with_actions,
     }
@@ -466,10 +466,10 @@ def task_generate_models():
     """Generate data models from OpenAPI spec."""
     return {
         "actions": [
-            "uv run datamodel-codegen --input api-spec.yaml --output src/__PACKAGE_NAME__/models/",
+            "uv run datamodel-codegen --input api-spec.yaml --output src/pyprojecttest/models/",
         ],
         "file_dep": ["api-spec.yaml"],
-        "targets": ["src/__PACKAGE_NAME__/models/api.py"],
+        "targets": ["src/pyprojecttest/models/api.py"],
         "title": title_with_actions,
     }
 
@@ -742,7 +742,7 @@ uv run pytest -v
 uv run mypy --show-error-codes --pretty src/
 
 # Check specific file
-uv run mypy src/__PACKAGE_NAME__/core.py
+uv run mypy src/pyprojecttest/core.py
 ```
 
 #### Pre-commit Hook Failures
@@ -804,5 +804,5 @@ uv run pre-commit install
 ## Next Steps
 
 - Check the [API Reference](../reference/api.md) for complete documentation
-- Read [CONTRIBUTING.md](https://github.com/username/package_name/blob/main/.github/CONTRIBUTING.md) for contribution guidelines
+- Read [CONTRIBUTING.md](https://github.com/endavis/pyprojecttest/blob/main/.github/CONTRIBUTING.md) for contribution guidelines
 - Review the docs and TODOs in this template to identify improvements for your project

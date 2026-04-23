@@ -172,7 +172,7 @@ Both environments use PyPI's trusted publisher mechanism instead of API tokens.
 Configure the trusted publisher on PyPI and TestPyPI:
 
 - **Publisher:** GitHub Actions
-- **Owner:** Your GitHub username or organization
+- **Owner:** Your GitHub endavis or organization
 - **Repository:** Your repository name
 - **Workflow:** `release.yml` (for PyPI) or `testpypi.yml` (for TestPyPI)
 - **Environment:** `pypi` or `testpypi` respectively
@@ -276,9 +276,9 @@ deployment.
 ## Code Owners
 
 The `.github/CODEOWNERS` file defines default reviewers for pull requests.
-The template sets `@username` as the owner for all paths. After creating a
+The template sets `@endavis` as the owner for all paths. After creating a
 new project, update the file with the actual repository owner's GitHub
-username.
+endavis.
 
 Key ownership areas defined:
 
@@ -292,7 +292,7 @@ Key ownership areas defined:
 - `dodo.py` -- Task automation
 
 **Automated:** No. The file is part of the template but requires manual
-update with the correct username.
+update with the correct endavis.
 
 ## Release Notes
 
@@ -332,7 +332,7 @@ configuration:
 1. **Environments** -- Run `doit publish_setup` to create the `testpypi` and `pypi` environments in one step
 2. **OIDC Trusted Publishers** -- Configure on PyPI and TestPyPI
 3. **Secrets** -- Add `CODECOV_TOKEN` and optional release app credentials
-4. **CODEOWNERS** -- Replace `@username` with the actual owner
+4. **CODEOWNERS** -- Replace `@endavis` with the actual owner
 5. **Dependabot** -- Verify Dependabot is enabled in repository settings
 
 For the full post-setup checklist, see the [New Project Setup](../template/new-project.md) guide.

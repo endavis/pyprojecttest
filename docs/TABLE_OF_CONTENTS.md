@@ -9,9 +9,9 @@ Complete index of all documentation, organized by audience and as a full alphabe
 
 ### For Users
 <!-- BEGIN:audience=users -->
-- [__PROJECT_NAME__ Documentation](index.md) - Welcome and overview of the project
+- [pyprojecttest Documentation](index.md) - Welcome and overview of the project
 - [API Development Guide](examples/api.md) - Building REST APIs with FastAPI - patterns, testing, and best practices
-- [API Reference](reference/api.md) - Complete API documentation for __PROJECT_NAME__
+- [API Reference](reference/api.md) - Complete API documentation for pyprojecttest
 - [CLI Guide](usage/cli.md) - The application's user-facing command-line interface and how to extend it
 - [Development Deployment Guide](deployment/development.md) - Guide for setting up and running the application in development environments
 - [Doit Tasks Reference](development/doit-tasks-reference.md) - Complete reference for all doit automation tasks
@@ -30,14 +30,14 @@ Complete index of all documentation, organized by audience and as a full alphabe
 
 ### For Contributors
 <!-- BEGIN:audience=contributors -->
-- [__PROJECT_NAME__ Documentation](index.md) - Welcome and overview of the project
+- [pyprojecttest Documentation](index.md) - Welcome and overview of the project
 - [Add a Feature: End-to-End Walkthrough](examples/add-a-feature.md) - Step-by-step example of adding a module, CLI subcommand, tests, and docs to the project
 - [AI Agent Setup Guide](development/AI_SETUP.md) - Configure Claude, Gemini, Copilot, and Codex for this project
 - [AI Architectural Conventions](development/ai/architectural-conventions.md) - Imperative-form architectural rules AI agents must follow when generating code
 - [AI Command Blocking](development/ai/command-blocking.md) - Hooks that block dangerous commands from AI agents
 - [AI Enforcement Principles](development/ai/enforcement-principles.md) - How we enforce AI agent behavior in code and settings
 - [API Development Guide](examples/api.md) - Building REST APIs with FastAPI - patterns, testing, and best practices
-- [API Reference](reference/api.md) - Complete API documentation for __PROJECT_NAME__
+- [API Reference](reference/api.md) - Complete API documentation for pyprojecttest
 - [CI/CD Testing Guide](development/ci-cd-testing.md) - GitHub Actions pipelines for testing, linting, and coverage
 - [Claude Code Statusline](development/ai/statusline.md) - Custom statusline showing git branch, Python version, and project info
 - [CLI Guide](usage/cli.md) - The application's user-facing command-line interface and how to extend it
@@ -73,7 +73,7 @@ Complete index of all documentation, organized by audience and as a full alphabe
 
 ## Complete Index
 <!-- BEGIN:all -->
-- [__PROJECT_NAME__ Documentation](index.md) - Welcome and overview of the project
+- [pyprojecttest Documentation](index.md) - Welcome and overview of the project
 - [Add a Feature: End-to-End Walkthrough](examples/add-a-feature.md) - Step-by-step example of adding a module, CLI subcommand, tests, and docs to the project
 - [ADR-9001: Use uv for package management](decisions/9001-use-uv-for-package-management.md)
 - [ADR-9002: Use doit for task automation](decisions/9002-use-doit-for-task-automation.md)
@@ -98,7 +98,7 @@ Complete index of all documentation, organized by audience and as a full alphabe
 - [AI Command Blocking](development/ai/command-blocking.md) - Hooks that block dangerous commands from AI agents
 - [AI Enforcement Principles](development/ai/enforcement-principles.md) - How we enforce AI agent behavior in code and settings
 - [API Development Guide](examples/api.md) - Building REST APIs with FastAPI - patterns, testing, and best practices
-- [API Reference](reference/api.md) - Complete API documentation for __PROJECT_NAME__
+- [API Reference](reference/api.md) - Complete API documentation for pyprojecttest
 - [Architecture Decision Records](decisions/README.md)
 - [CI/CD Testing Guide](development/ci-cd-testing.md) - GitHub Actions pipelines for testing, linting, and coverage
 - [Claude Code Statusline](development/ai/statusline.md) - Custom statusline showing git branch, Python version, and project info

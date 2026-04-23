@@ -17,8 +17,8 @@ router = APIRouter()
 
 # In-memory "database" for demonstration
 _users_db: dict[int, dict] = {
-    1: {"id": 1, "username": "alice", "email": "alice@example.com", "is_active": True},
-    2: {"id": 2, "username": "bob", "email": "bob@example.com", "is_active": True},
+    1: {"id": 1, "endavis": "alice", "email": "alice@example.com", "is_active": True},
+    2: {"id": 2, "endavis": "bob", "email": "bob@example.com", "is_active": True},
 }
 _next_id = 3
 
@@ -60,20 +60,20 @@ def get_user(user_id: int = Path(..., gt=0, description="The user ID")):
 def create_user(user: UserCreate):
     """Create a new user account.
 
-    - **username**: Must be unique, 3-50 characters
+    - **endavis**: Must be unique, 3-50 characters
     - **email**: Valid email address
     - **password**: Minimum 8 characters (not stored in response)
     """
     global _next_id
 
-    # Check for duplicate username
+    # Check for duplicate endavis
     for existing in _users_db.values():
-        if existing["username"] == user.username:
-            raise ConflictError(f"Username '{user.username}' already exists")
+        if existing["endavis"] == user.endavis:
+            raise ConflictError(f"Username '{user.endavis}' already exists")
 
     new_user = {
         "id": _next_id,
-        "username": user.username,
+        "endavis": user.endavis,
         "email": user.email,
         "is_active": True,
     }

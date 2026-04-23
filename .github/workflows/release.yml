@@ -37,8 +37,8 @@ jobs:
       - name: Show resolved version
         run: |
           uv run python - <<'PY'
-          import package_name
-          print(f"Resolved version: {package_name.__version__}")
+          import pyprojecttest
+          print(f"Resolved version: {pyprojecttest.__version__}")
           PY
 
       - name: Build artifacts

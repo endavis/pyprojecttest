@@ -103,13 +103,13 @@ Interactively prompts for project information and replaces all placeholder value
 
 | Prompt | Default | Description |
 |--------|---------|-------------|
-| Project name | Package Name | Display name for the project |
-| Package name | package_name | Python import name (snake_case) |
-| PyPI name | package-name | Name on PyPI (typically hyphenated) |
-| Author name | Your Name | Author for package metadata |
-| Author email | your.email@example.com | Contact email |
-| GitHub username | username | Your GitHub username |
-| Description | A short description of your package | One-line project description |
+| Project name | pyprojecttest | Display name for the project |
+| Package name | pyprojecttest | Python import name (snake_case) |
+| PyPI name | pyprojecttest | Name on PyPI (typically hyphenated) |
+| Author name | Eric Davis | Author for package metadata |
+| Author email | 6662995+endavis@users.noreply.github.com | Contact email |
+| GitHub endavis | endavis | Your GitHub endavis |
+| Description | A Python project based on pyproject-template | One-line project description |
 
 ### Files Modified
 
@@ -127,7 +127,7 @@ Interactively prompts for project information and replaces all placeholder value
 ### Actions Performed
 
 1. Replaces placeholder strings with provided values
-2. Renames `src/package_name/` to `src/your_package_name/`
+2. Renames `src/pyprojecttest/` to `src/your_pyprojecttest/`
 3. Updates all URLs and badge links
 4. Updates documentation references
 
@@ -138,7 +138,7 @@ Interactively prompts for project information and replaces all placeholder value
 
 ### Placeholder Markers
 
-Prose files in the template (`README.md`, `CHANGELOG.md`, `docs/**/*.md`, most files under `.github/`) use explicit marker tokens like `__PACKAGE_NAME__`, `__GH_OWNER__`, `__AUTHOR_NAME__`, `__PYPI_NAME__`, `__PROJECT_NAME__`, `__AUTHOR_EMAIL__`, and `__DESCRIPTION__`. The spawn flow (`setup_repo.py` / `configure.py`) substitutes these at placeholder-replacement time. Markers are used instead of bare identifier literals (`package_name`, `username`) so substring collisions cannot corrupt identifiers like `validate_package_name`. Runtime-critical files (`pyproject.toml`, `mkdocs.yml`, `dodo.py`, workflows, `LICENSE`, `.envrc`, `.pre-commit-config.yaml`) keep literal placeholder values so the template repo itself remains runnable. Python source and test files keep literal identifiers but get word-boundary regex protection during substitution.
+Prose files in the template (`README.md`, `CHANGELOG.md`, `docs/**/*.md`, most files under `.github/`) use explicit marker tokens like `pyprojecttest`, `endavis`, `Eric Davis`, `pyprojecttest`, `pyprojecttest`, `6662995+endavis@users.noreply.github.com`, and `A Python project based on pyproject-template`. The spawn flow (`setup_repo.py` / `configure.py`) substitutes these at placeholder-replacement time. Markers are used instead of bare identifier literals (`pyprojecttest`, `endavis`) so substring collisions cannot corrupt identifiers like `validate_pyprojecttest`. Runtime-critical files (`pyproject.toml`, `mkdocs.yml`, `dodo.py`, workflows, `LICENSE`, `.envrc`, `.pre-commit-config.yaml`) keep literal placeholder values so the template repo itself remains runnable. Python source and test files keep literal identifiers but get word-boundary regex protection during substitution.
 
 ---
 
@@ -206,7 +206,7 @@ The script copies these template files/directories:
 - `.devcontainer/`
 - `.claude/`, `.codex/`, `.gemini/`
 - `tools/pyproject_template/`
-- `src/package_name/` (template source)
+- `src/pyprojecttest/` (template source)
 - `tests/` (template tests)
 
 ### Backup Behavior
@@ -220,7 +220,7 @@ The script copies these template files/directories:
 After running the script:
 
 1. Run `python tools/pyproject_template/configure.py`
-2. Move your code into `src/your_package_name/`
+2. Move your code into `src/your_pyprojecttest/`
 3. Merge your dependencies into `pyproject.toml`
 4. Run `uv lock` to regenerate lock file
 5. Run `doit check` to verify

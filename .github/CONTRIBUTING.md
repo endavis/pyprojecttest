@@ -1,4 +1,4 @@
-# Contributing to __PROJECT_NAME__
+# Contributing to pyprojecttest
 
 Thank you for your interest in contributing to this project! We welcome contributions from everyone.
 
@@ -42,8 +42,8 @@ This project adheres to the Contributor Covenant [Code of Conduct](CODE_OF_CONDU
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/__PACKAGE_NAME__.git
-cd __PACKAGE_NAME__
+git clone https://github.com/YOUR_USERNAME/pyprojecttest.git
+cd pyprojecttest
 
 # Set up direnv
 direnv allow
@@ -176,7 +176,7 @@ import click
 import pytest
 
 # Local
-from __PACKAGE_NAME__ import module
+from pyprojecttest import module
 ```
 
 ## Testing Guidelines
@@ -456,7 +456,7 @@ See [issue #475](https://github.com/endavis/pyproject-template/issues/475).
 **Testing a pre-release from TestPyPI:**
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ __PYPI_NAME__==1.0.1a0
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pyprojecttest==1.0.1a0
 ```
 
 ### Workflow Triggers
@@ -560,7 +560,7 @@ git config --global credential.helper store
 # Then git will prompt for credentials on first push
 
 # Option 2: Include token in remote URL (less secure)
-git remote set-url origin https://<token>@github.com/username/repo.git
+git remote set-url origin https://<token>@github.com/endavis/repo.git
 ```
 
 **3. Store as Secret (for CI-based releases):**
@@ -880,7 +880,7 @@ ADRs provide context for why decisions were made, helping future contributors un
 
 ```bash
 # Add upstream remote (one-time setup)
-git remote add upstream https://github.com/original-owner/__PACKAGE_NAME__.git
+git remote add upstream https://github.com/original-owner/pyprojecttest.git
 
 # Fetch and merge upstream changes
 git checkout main
@@ -894,7 +894,7 @@ git push origin main
 If you have questions:
 
 1. Check the [README.md](README.md) and [AGENTS.md](AGENTS.md)
-2. Search existing [Issues](https://github.com/username/package_name/issues)
+2. Search existing [Issues](https://github.com/endavis/pyprojecttest/issues)
 3. Open a new issue with the "question" label
 4. Join our discussions (if available)
 

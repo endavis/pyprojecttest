@@ -113,8 +113,8 @@ class UserFactory(factory.Factory):
     class Meta:
         model = User
 
-    __GH_OWNER__ = factory.Sequence(lambda n: f"user{n}")
-    email = factory.LazyAttribute(lambda obj: f"{obj.__GH_OWNER__}@example.com")
+    endavis = factory.Sequence(lambda n: f"user{n}")
+    email = factory.LazyAttribute(lambda obj: f"{obj.endavis}@example.com")
 ```
 
 ### mutmut - Mutation testing
@@ -226,7 +226,7 @@ def task_profile():
     """Profile the application."""
     return {
         "actions": [
-            "uv run py-spy record -o tmp/profile.svg -- python -m __PACKAGE_NAME__",
+            "uv run py-spy record -o tmp/profile.svg -- python -m pyprojecttest",
         ],
         "title": title_with_actions,
     }
@@ -235,7 +235,7 @@ def task_profile_memory():
     """Profile memory usage."""
     return {
         "actions": [
-            "memray run -o tmp/memray.bin python -m __PACKAGE_NAME__",
+            "memray run -o tmp/memray.bin python -m pyprojecttest",
             "memray flamegraph tmp/memray.bin -o tmp/memray.html",
         ],
         "title": title_with_actions,
@@ -449,7 +449,7 @@ Entry points are ideal when you want to:
 Create a protocol or abstract base class that all plugins must implement:
 
 ```python
-# src/__PACKAGE_NAME__/plugin_interface.py
+# src/pyprojecttest/plugin_interface.py
 from typing import Protocol
 
 class PluginInterface(Protocol):
@@ -475,7 +475,7 @@ class PluginInterface(Protocol):
 Load and validate plugins from entry points:
 
 ```python
-# src/__PACKAGE_NAME__/plugin_loader.py
+# src/pyprojecttest/plugin_loader.py
 from importlib.metadata import entry_points
 from typing import Dict
 from .plugin_interface import PluginInterface
@@ -484,8 +484,8 @@ def discover_plugins() -> Dict[str, PluginInterface]:
     """Discover and load all plugins."""
     plugins = {}
 
-    # Find all entry points in '__PACKAGE_NAME__.plugins' group
-    eps = entry_points(group='__PACKAGE_NAME__.plugins')
+    # Find all entry points in 'pyprojecttest.plugins' group
+    eps = entry_points(group='pyprojecttest.plugins')
 
     for ep in eps:
         try:
@@ -511,7 +511,7 @@ def discover_plugins() -> Dict[str, PluginInterface]:
 **3. Use Plugins in Your Application**
 
 ```python
-# src/__PACKAGE_NAME__/main.py
+# src/pyprojecttest/main.py
 from .plugin_loader import discover_plugins
 
 def main():
@@ -531,9 +531,9 @@ def main():
 Register your own plugins in `pyproject.toml`:
 
 ```toml
-[project.entry-points."__PACKAGE_NAME__.plugins"]
-default = "__PACKAGE_NAME__.plugins.default:DefaultPlugin"
-csv_export = "__PACKAGE_NAME__.plugins.csv_export:CSVExportPlugin"
+[project.entry-points."pyprojecttest.plugins"]
+default = "pyprojecttest.plugins.default:DefaultPlugin"
+csv_export = "pyprojecttest.plugins.csv_export:CSVExportPlugin"
 ```
 
 **5. Enable Third-Party Plugins**
@@ -561,15 +561,15 @@ class AnalyticsPlugin:
 And register it in their `pyproject.toml`:
 
 ```toml
-[project.entry-points."__PACKAGE_NAME__.plugins"]
+[project.entry-points."pyprojecttest.plugins"]
 analytics = "myplugin.analytics:AnalyticsPlugin"
 ```
 
 When users install both packages:
 
 ```bash
-pip install __PYPI_NAME__
-pip install __PYPI_NAME__-analytics
+pip install pyprojecttest
+pip install pyprojecttest-analytics
 ```
 
 Your application automatically discovers and loads the third-party plugin!
@@ -582,24 +582,24 @@ For complex systems, you can have different types of plugins with different entr
 
 ```toml
 # Your core package
-[project.entry-points."__PACKAGE_NAME__.plugin_types"]
-processor = "__PACKAGE_NAME__.plugin_types.processor:ProcessorPluginType"
-exporter = "__PACKAGE_NAME__.plugin_types.exporter:ExporterPluginType"
+[project.entry-points."pyprojecttest.plugin_types"]
+processor = "pyprojecttest.plugin_types.processor:ProcessorPluginType"
+exporter = "pyprojecttest.plugin_types.exporter:ExporterPluginType"
 
 # Register built-in plugins by type
-[project.entry-points."__PACKAGE_NAME__.processors"]
-csv = "__PACKAGE_NAME__.plugins.csv_processor:CSVProcessor"
-json = "__PACKAGE_NAME__.plugins.json_processor:JSONProcessor"
+[project.entry-points."pyprojecttest.processors"]
+csv = "pyprojecttest.plugins.csv_processor:CSVProcessor"
+json = "pyprojecttest.plugins.json_processor:JSONProcessor"
 
-[project.entry-points."__PACKAGE_NAME__.exporters"]
-s3 = "__PACKAGE_NAME__.plugins.s3_exporter:S3Exporter"
-local = "__PACKAGE_NAME__.plugins.local_exporter:LocalExporter"
+[project.entry-points."pyprojecttest.exporters"]
+s3 = "pyprojecttest.plugins.s3_exporter:S3Exporter"
+local = "pyprojecttest.plugins.local_exporter:LocalExporter"
 ```
 
 **Plugin Type Manager:**
 
 ```python
-# src/__PACKAGE_NAME__/plugin_types/processor.py
+# src/pyprojecttest/plugin_types/processor.py
 from dataclasses import dataclass
 from typing import Any, Protocol
 
@@ -624,7 +624,7 @@ class ProcessorPluginType:
 
     @property
     def entry_point_group(self) -> str:
-        return "__PACKAGE_NAME__.processors"
+        return "pyprojecttest.processors"
 
     @property
     def type_name(self) -> str:
@@ -650,10 +650,10 @@ class ProcessorPluginType:
 
 ```toml
 # third-party-package/pyproject.toml
-[project.entry-points."__PACKAGE_NAME__.processors"]
+[project.entry-points."pyprojecttest.processors"]
 xml = "thirdparty_plugin.xml:XMLProcessor"
 
-[project.entry-points."__PACKAGE_NAME__.exporters"]
+[project.entry-points."pyprojecttest.exporters"]
 ftp = "thirdparty_plugin.ftp:FTPExporter"
 ```
 
@@ -662,7 +662,7 @@ ftp = "thirdparty_plugin.ftp:FTPExporter"
 A common use case is auto-registering CLI commands from plugins:
 
 ```python
-# src/__PACKAGE_NAME__/cli.py
+# src/pyprojecttest/cli.py
 import click
 from importlib.metadata import entry_points
 
@@ -672,7 +672,7 @@ def cli():
     pass
 
 # Discover and register all plugin commands
-for ep in entry_points(group='__PACKAGE_NAME__.cli_plugins'):
+for ep in entry_points(group='pyprojecttest.cli_plugins'):
     try:
         command = ep.load()
         cli.add_command(command)
@@ -699,7 +699,7 @@ def export(output):
 Register in their pyproject.toml:
 
 ```toml
-[project.entry-points."__PACKAGE_NAME__.cli_plugins"]
+[project.entry-points."pyprojecttest.cli_plugins"]
 export = "myplugin.commands:export"
 ```
 
@@ -716,7 +716,7 @@ Exporting to data.csv
 
 ```python
 # tests/test_plugins.py
-from __PACKAGE_NAME__.plugin_loader import discover_plugins
+from pyprojecttest.plugin_loader import discover_plugins
 
 def test_discovers_built_in_plugins():
     plugins = discover_plugins()
@@ -871,7 +871,7 @@ RUN uv sync --no-dev
 COPY src/ ./src/
 
 # Run the application
-CMD ["uv", "run", "python", "-m", "__PACKAGE_NAME__"]
+CMD ["uv", "run", "python", "-m", "pyprojecttest"]
 ```
 
 ### Docker Compose for development

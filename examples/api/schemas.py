@@ -12,12 +12,12 @@ from pydantic import BaseModel, EmailStr, Field
 class UserCreate(BaseModel):
     """Schema for creating a new user."""
 
-    username: str = Field(
+    endavis: str = Field(
         ...,
         min_length=3,
         max_length=50,
         examples=["johndoe"],
-        description="Unique username",
+        description="Unique endavis",
     )
     email: EmailStr = Field(..., examples=["john@example.com"])
     password: str = Field(
@@ -31,7 +31,7 @@ class UserCreate(BaseModel):
 class UserUpdate(BaseModel):
     """Schema for updating a user (all fields optional)."""
 
-    username: str | None = Field(None, min_length=3, max_length=50)
+    endavis: str | None = Field(None, min_length=3, max_length=50)
     email: EmailStr | None = None
     is_active: bool | None = None
 
@@ -40,7 +40,7 @@ class UserResponse(BaseModel):
     """Schema for user responses (excludes sensitive data)."""
 
     id: int
-    username: str
+    endavis: str
     email: EmailStr
     is_active: bool = True
 

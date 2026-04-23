@@ -145,7 +145,7 @@ The script will prompt for:
 - Package name (import name, snake_case)
 - PyPI name (package name on PyPI, typically with hyphens)
 - Author name and email
-- GitHub username
+- GitHub endavis
 - Project description
 
 ### What Configure Does
@@ -160,7 +160,7 @@ The `configure.py` script:
    - `docs/*` - Documentation content
 
 2. **Renames the source directory**:
-   - `src/package_name/` → `src/your_package_name/`
+   - `src/pyprojecttest/` → `src/your_pyprojecttest/`
 
 3. **Updates badge URLs** for CI, coverage, and PyPI
 
@@ -238,7 +238,7 @@ Manually configure what the automated setup does automatically:
 
 After setup is complete:
 
-1. **Start coding** in `src/your_package_name/`
+1. **Start coding** in `src/your_pyprojecttest/`
 2. **Write tests** in `tests/`
 3. **Update documentation** in `docs/`
 4. **Follow the workflow**: Issue → Branch → Commit → PR → Merge

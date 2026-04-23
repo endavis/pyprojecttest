@@ -1,9 +1,9 @@
-"""Tests for the package_name command-line interface."""
+"""Tests for the pyprojecttest command-line interface."""
 
 from click.testing import CliRunner
 
-from package_name import __version__
-from package_name.cli import main
+from pyprojecttest import __version__
+from pyprojecttest.cli import main
 
 
 def test_greet_default_name() -> None:
@@ -57,6 +57,6 @@ def test_version_option() -> None:
 
 def test_main_is_importable() -> None:
     """The entry-point target is importable and callable."""
-    from package_name.cli import main as imported_main
+    from pyprojecttest.cli import main as imported_main
 
     assert callable(imported_main)

@@ -71,7 +71,7 @@ class TestUserEndpoints:
         assert response.status_code == 200
         user = response.json()
         assert user["id"] == 1
-        assert "username" in user
+        assert "endavis" in user
         assert "email" in user
 
     def test_get_user_not_found(self, client):
@@ -86,14 +86,14 @@ class TestUserEndpoints:
         response = client.post(
             "/users",
             json={
-                "username": "newuser",
+                "endavis": "newuser",
                 "email": "newuser@example.com",
                 "password": "securepassword123",
             },
         )
         assert response.status_code == 201
         user = response.json()
-        assert user["username"] == "newuser"
+        assert user["endavis"] == "newuser"
         assert user["email"] == "newuser@example.com"
         assert "password" not in user  # Password should not be returned
         assert user["is_active"] is True
@@ -103,7 +103,7 @@ class TestUserEndpoints:
         response = client.post(
             "/users",
             json={
-                "username": "testuser",
+                "endavis": "testuser",
                 "email": "not-an-email",
                 "password": "securepassword123",
             },
@@ -115,7 +115,7 @@ class TestUserEndpoints:
         response = client.post(
             "/users",
             json={
-                "username": "testuser",
+                "endavis": "testuser",
                 "email": "test@example.com",
                 "password": "short",
             },
@@ -123,21 +123,21 @@ class TestUserEndpoints:
         assert response.status_code == 422
 
     def test_create_user_duplicate_username(self, client):
-        """Test conflict error for duplicate username."""
+        """Test conflict error for duplicate endavis."""
         # First create a user
         client.post(
             "/users",
             json={
-                "username": "duplicateuser",
+                "endavis": "duplicateuser",
                 "email": "dup1@example.com",
                 "password": "securepassword123",
             },
         )
-        # Try to create another with same username
+        # Try to create another with same endavis
         response = client.post(
             "/users",
             json={
-                "username": "duplicateuser",
+                "endavis": "duplicateuser",
                 "email": "dup2@example.com",
                 "password": "securepassword123",
             },
@@ -148,14 +148,14 @@ class TestUserEndpoints:
 
     def test_update_user(self, client):
         """Test updating a user."""
-        response = client.patch("/users/1", json={"username": "updated_alice"})
+        response = client.patch("/users/1", json={"endavis": "updated_alice"})
         assert response.status_code == 200
         user = response.json()
-        assert user["username"] == "updated_alice"
+        assert user["endavis"] == "updated_alice"
 
     def test_update_user_not_found(self, client):
         """Test 404 when updating non-existent user."""
-        response = client.patch("/users/99999", json={"username": "ghost"})
+        response = client.patch("/users/99999", json={"endavis": "ghost"})
         assert response.status_code == 404
 
     def test_delete_user_requires_api_key(self, client):
@@ -174,7 +174,7 @@ class TestUserEndpoints:
         create_response = client.post(
             "/users",
             json={
-                "username": "tobedeleted",
+                "endavis": "tobedeleted",
                 "email": "delete@example.com",
                 "password": "securepassword123",
             },

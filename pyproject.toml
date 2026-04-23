@@ -3,13 +3,13 @@ requires = ["hatchling>=1.29.0", "hatch-vcs>=0.5.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "package_name"
-description = "A short description of your package"
+name = "pyprojecttest"
+description = "A Python project based on pyproject-template"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.12"
 dynamic = ["version"]
 authors = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "Eric Davis", email = "6662995+endavis@users.noreply.github.com"},
 ]
 license = {file = "LICENSE"}
 keywords = ["keyword1", "keyword2"]
@@ -61,16 +61,16 @@ security = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/username/package_name"
-Repository = "https://github.com/username/package_name"
-Documentation = "https://github.com/username/package_name/tree/main/docs"
-Issues = "https://github.com/username/package_name/issues"
+Homepage = "https://github.com/endavis/pyprojecttest"
+Repository = "https://github.com/endavis/pyprojecttest"
+Documentation = "https://github.com/endavis/pyprojecttest/tree/main/docs"
+Issues = "https://github.com/endavis/pyprojecttest/issues"
 
 [project.scripts]
-package-name = "package_name.cli:main"
+pyprojecttest = "pyprojecttest.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/package_name"]
+packages = ["src/pyprojecttest"]
 
 [tool.hatch.version]
 source = "vcs"
@@ -78,7 +78,7 @@ tag-pattern = "^(?:v|d)(?P<version>.+)$"
 fallback-version = "0.0.0"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/package_name/_version.py"
+version-file = "src/pyprojecttest/_version.py"
 
 [tool.ruff]
 line-length = 100
@@ -168,7 +168,7 @@ warmup = true
 
 [tool.coverage.run]
 branch = true
-source = ["package_name"]
+source = ["pyprojecttest"]
 
 [tool.coverage.report]
 skip_covered = false

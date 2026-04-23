@@ -152,7 +152,7 @@ from pydantic import BaseModel, EmailStr, Field
 class UserCreate(BaseModel):
     """Schema for creating a new user."""
 
-    username: str = Field(..., min_length=3, max_length=50)
+    endavis: str = Field(..., min_length=3, max_length=50)
     email: EmailStr
     password: str = Field(..., min_length=8)
 
@@ -161,7 +161,7 @@ class UserResponse(BaseModel):
     """Schema for user responses (excludes password)."""
 
     id: int
-    username: str
+    endavis: str
     email: EmailStr
     is_active: bool = True
 
@@ -172,7 +172,7 @@ class UserResponse(BaseModel):
 class UserUpdate(BaseModel):
     """Schema for updating a user (all fields optional)."""
 
-    username: str | None = Field(None, min_length=3, max_length=50)
+    endavis: str | None = Field(None, min_length=3, max_length=50)
     email: EmailStr | None = None
     is_active: bool | None = None
 ```
@@ -220,7 +220,7 @@ def create_user(user: UserCreate):
     # user is already validated by Pydantic
     new_user = {
         "id": 1,
-        "username": user.username,
+        "endavis": user.endavis,
         "email": user.email,
         "is_active": True,
     }
@@ -320,14 +320,14 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, settings.secret_key, algorithms=["HS256"])
-        username: str = payload.get("sub")
-        if username is None:
+        endavis: str = payload.get("sub")
+        if endavis is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
 
     # Fetch user from database
-    user = get_user_by_username(username)
+    user = get_user_by_endavis(endavis)
     if user is None:
         raise credentials_exception
     return user
@@ -345,15 +345,15 @@ router = APIRouter()
 @router.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     """OAuth2 compatible token login."""
-    user = authenticate_user(form_data.username, form_data.password)
+    user = authenticate_user(form_data.endavis, form_data.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect endavis or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = create_access_token(
-        data={"sub": user.username},
+        data={"sub": user.endavis},
         expires_delta=timedelta(minutes=settings.access_token_expire_minutes),
     )
     return {"access_token": access_token, "token_type": "bearer"}
@@ -485,14 +485,14 @@ def test_create_user(client):
     response = client.post(
         "/users",
         json={
-            "username": "testuser",
+            "endavis": "testuser",
             "email": "test@example.com",
             "password": "securepassword123",
         },
     )
     assert response.status_code == 201
     data = response.json()
-    assert data["username"] == "testuser"
+    assert data["endavis"] == "testuser"
     assert "password" not in data  # Should not expose password
 
 
@@ -501,7 +501,7 @@ def test_create_user_invalid_email(client):
     response = client.post(
         "/users",
         json={
-            "username": "testuser",
+            "endavis": "testuser",
             "email": "not-an-email",
             "password": "securepassword123",
         },
@@ -557,7 +557,7 @@ def test_with_mock_db(client):
     mock_db = MagicMock()
     mock_db.query.return_value.filter.return_value.first.return_value = {
         "id": 1,
-        "username": "mockuser",
+        "endavis": "mockuser",
     }
 
     app.dependency_overrides[get_db] = lambda: mock_db
@@ -574,7 +574,7 @@ def override_auth():
     """Override authentication for testing."""
     from myapp.auth import get_current_user
 
-    mock_user = {"id": 1, "username": "testuser", "is_active": True}
+    mock_user = {"id": 1, "endavis": "testuser", "is_active": True}
     app.dependency_overrides[get_current_user] = lambda: mock_user
     yield
     app.dependency_overrides.clear()
@@ -597,14 +597,14 @@ from pydantic import BaseModel, Field
 
 
 class UserCreate(BaseModel):
-    username: str = Field(..., examples=["johndoe"])
+    endavis: str = Field(..., examples=["johndoe"])
     email: str = Field(..., examples=["john@example.com"])
     password: str = Field(..., examples=["SecurePass123!"])
 
     class Config:
         json_schema_extra = {
             "example": {
-                "username": "johndoe",
+                "endavis": "johndoe",
                 "email": "john@example.com",
                 "password": "SecurePass123!",
             }
@@ -627,7 +627,7 @@ def create_user(user: UserCreate):
     """
     Create a new user with the following information:
 
-    - **username**: unique username (3-50 characters)
+    - **endavis**: unique endavis (3-50 characters)
     - **email**: valid email address
     - **password**: secure password (minimum 8 characters)
     """
