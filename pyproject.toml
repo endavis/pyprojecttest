@@ -1,125 +1,138 @@
 [build-system]
-requires = ["hatchling>=1.29.0", "hatch-vcs>=0.5.0"]
 build-backend = "hatchling.build"
+requires = [ "hatch-vcs>=0.5", "hatchling>=1.29" ]
 
 [project]
 name = "pyprojecttest"
 description = "A Python project based on pyproject-template"
-readme = {file = "README.md", content-type = "text/markdown"}
-requires-python = ">=3.12"
-dynamic = ["version"]
+readme = { file = "README.md", content-type = "text/markdown" }
+keywords = [ "keyword1", "keyword2" ]
+license = { file = "LICENSE" }
 authors = [
-    {name = "Eric Davis", email = "6662995+endavis@users.noreply.github.com"},
+  { name = "Eric Davis", email = "6662995+endavis@users.noreply.github.com" },
 ]
-license = {file = "LICENSE"}
-keywords = ["keyword1", "keyword2"]
+requires-python = ">=3.12"
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "License :: OSI Approved :: MIT License",
-    "Intended Audience :: Developers",
-    "Topic :: Software Development :: Libraries",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: Libraries",
 ]
+dynamic = [ "version" ]
 dependencies = [
-    "click>=8.3.2",
-    "rich>=15.0.0",
+  "click>=8.3.2",
+  "rich>=15",
 ]
-
-[project.optional-dependencies]
-dev = [
-    "doit>=0.36.0",
-    "pytest>=9.0.3",
-    "pytest-cov>=5.0",
-    "pytest-xdist>=3.5",
-    "ruff>=0.15.11",
-    "mypy>=1.20.1",
-    "pre-commit>=3.7.0",
-    "mkdocs-material>=9.5",
-    "mkdocstrings[python]>=1.0.4",
-    "pymdown-extensions>=10.21.2",
-    "codespell>=2.2",
-    "pyproject-fmt>=2.21.1",
-    "commitizen>=4.13.10",
-    "pyright>=1.1.0",
-    "pyyaml>=6.0",
-    "types-pyyaml>=6.0.12.20260408",
-    "vulture>=2.11",
-    "radon>=6.0",
-    "pytest-benchmark>=4.0",
-    "mutmut>=3.0",
-    "hypothesis>=6.152.1",
+optional-dependencies.dev = [
+  "codespell>=2.2",
+  "commitizen>=4.13.10",
+  "doit>=0.36",
+  "hypothesis>=6.152.1",
+  "mkdocs-material>=9.5",
+  "mkdocstrings[python]>=1.0.4",
+  "mutmut>=3",
+  "mypy>=1.20.1",
+  "pre-commit>=3.7",
+  "pymdown-extensions>=10.21.2",
+  "pyproject-fmt>=2.21.1",
+  "pyright>=1.1",
+  "pytest>=9.0.3",
+  "pytest-benchmark>=4",
+  "pytest-cov>=5",
+  "pytest-xdist>=3.5",
+  "pyyaml>=6",
+  "radon>=6",
+  "ruff>=0.15.11",
+  "types-pyyaml>=6.0.12.20260408",
+  "vulture>=2.11",
 ]
-security = [
-    "pip-audit>=2.6",
-    "bandit>=1.7",
-    "pip>=26.0",
-    "pip-licenses>=4.0",
-    "cyclonedx-bom>=4.0",
+optional-dependencies.security = [
+  "bandit>=1.7",
+  "cyclonedx-bom>=4",
+  "pip>=26",
+  "pip-audit>=2.6",
+  "pip-licenses>=4",
 ]
+urls.Documentation = "https://github.com/endavis/pyprojecttest/tree/main/docs"
+urls.Homepage = "https://github.com/endavis/pyprojecttest"
+urls.Issues = "https://github.com/endavis/pyprojecttest/issues"
+urls.Repository = "https://github.com/endavis/pyprojecttest"
+scripts.pyprojecttest = "pyprojecttest.cli:main"
 
-[project.urls]
-Homepage = "https://github.com/endavis/pyprojecttest"
-Repository = "https://github.com/endavis/pyprojecttest"
-Documentation = "https://github.com/endavis/pyprojecttest/tree/main/docs"
-Issues = "https://github.com/endavis/pyprojecttest/issues"
-
-[project.scripts]
-pyprojecttest = "pyprojecttest.cli:main"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/pyprojecttest"]
-
-[tool.hatch.version]
-source = "vcs"
-tag-pattern = "^(?:v|d)(?P<version>.+)$"
-fallback-version = "0.0.0"
-
-[tool.hatch.build.hooks.vcs]
-version-file = "src/pyprojecttest/_version.py"
+[tool.hatch]
+build.hooks.vcs.version-file = "src/pyprojecttest/_version.py"
+build.targets.wheel.packages = [ "src/pyprojecttest" ]
+version.source = "vcs"
+version.tag-pattern = "^(?:v|d)(?P<version>.+)$"
+version.fallback-version = "0.0.0"
 
 [tool.ruff]
-line-length = 100
 target-version = "py312"
-extend-exclude = ["**/_version.py"]
-
-[tool.ruff.lint]
+line-length = 100
+extend-exclude = [ "**/_version.py" ]
+format.indent-style = "space"
+format.quote-style = "double"
+format.line-ending = "lf"
+lint.select = [
+  "ANN",     # flake8-annotations (type hints)
+  "ASYNC",   # flake8-async
+  "B",       # flake8-bugbear
+  "C4",      # flake8-comprehensions
+  "E",       # pycodestyle errors
+  "F",       # pyflakes
+  "I",       # isort
+  "N",       # pep8-naming
+  "PLW1514", # require explicit encoding on text-mode file I/O (preview rule)
+  "RUF",     # Ruff-specific rules
+  "SIM",     # flake8-simplify
+  "UP",      # pyupgrade
+  "W",       # pycodestyle warnings
+]
+lint.ignore = []
+lint.explicit-preview-rules = true
+lint.per-file-ignores."tests/benchmarks/*.py" = [
+  "ANN401", # benchmark fixture has no py.typed
+]
+lint.per-file-ignores."tools/pyproject_template/*.py" = [
+  "ANN401", # Any return type for dynamic GitHub API responses
+  "RUF022", # __all__ intentionally grouped by category, not sorted
+]
 # Enable preview mode but require rules to be listed by exact code so we
 # opt into PLW1514 without pulling in every other unstable preview rule.
-preview = true
-explicit-preview-rules = true
-select = [
-    "E",    # pycodestyle errors
-    "F",    # pyflakes
-    "I",    # isort
-    "N",    # pep8-naming
-    "W",    # pycodestyle warnings
-    "UP",   # pyupgrade
-    "ANN",  # flake8-annotations (type hints)
-    "B",    # flake8-bugbear
-    "C4",   # flake8-comprehensions
-    "RUF",  # Ruff-specific rules
-    "SIM",  # flake8-simplify
-    "ASYNC", # flake8-async
-    "PLW1514",  # require explicit encoding on text-mode file I/O (preview rule)
-]
-ignore = []
+lint.preview = true
 
-[tool.ruff.lint.per-file-ignores]
-"tools/pyproject_template/*.py" = [
-    "ANN401",  # Any return type for dynamic GitHub API responses
-    "RUF022",  # __all__ intentionally grouped by category, not sorted
-]
-"tests/benchmarks/*.py" = [
-    "ANN401",  # benchmark fixture has no py.typed
-]
+[tool.codespell]
+skip = "tmp,.venv,.git,*.lock,*.pyc,__pycache__"
+ignore-words-list = "crate"
 
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-line-ending = "lf"
+[tool.bandit]
+exclude_dirs = [
+  "tests",
+  "tmp",
+  ".venv",
+  "docs",
+  "examples",
+  ".git",
+  ".github",
+  ".pytest_cache",
+  ".mypy_cache",
+  ".ruff_cache",
+  "site",
+  ".claude",
+  ".gemini",
+  ".codex",
+  ".devcontainer",
+  ".vscode",
+]
+skips = [
+  "B101",
+  "B603",
+  "B607",
+]
 
 [tool.mypy]
 python_version = "3.12"
@@ -136,116 +149,104 @@ strict_equality = true
 warn_redundant_casts = true
 warn_unreachable = true
 # tools/pyproject_template/ uses sys.path manipulation for standalone execution
-exclude = ["tools/pyproject_template/", ".claude/", ".gemini/", ".codex/"]
-
-[[tool.mypy.overrides]]
-module = "doit.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-# Standalone scripts using sys.path manipulation; excluded from discovery
-# but still followed via imports from bootstrap.py
-module = "tools.pyproject_template.*"
-follow_imports = "skip"
-
-[tool.pytest.ini_options]
-minversion = "8.0"
-addopts = "--strict-config --strict-markers --benchmark-disable"
-testpaths = ["tests"]
-pythonpath = ["."]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-markers = [
-    "benchmark: marks tests as performance benchmarks (deselect with '--benchmark-disable')",
-    "property: marks tests as property-based tests (run with Hypothesis)",
+exclude = [ "tools/pyproject_template/", ".claude/", ".gemini/", ".codex/" ]
+overrides = [
+  { module = "doit.*", ignore_missing_imports = true },
+  # Standalone scripts using sys.path manipulation; excluded from discovery
+  # but still followed via imports from bootstrap.py
+  { module = "tools.pyproject_template.*", follow_imports = "skip" },
 ]
+
+[tool.pyright]
+# LSP support for Claude Code - provides fast code navigation and type checking
+include = [
+  "src",
+  "tests",
+  "*.py",    # Root level Python files (dodo.py, setup-repo.py, configure.py)
+  "tools",   # Tools directory (migrate_existing_project.py)
+  ".github", # Any Python in GitHub workflows/scripts
+]
+exclude = [
+  "**/__pycache__",
+  "**/.venv",
+  "**/tmp",
+  "**/.pytest_cache",
+  "**/.mypy_cache",
+  "**/.ruff_cache",
+  "**/site",          # mkdocs build output
+  "**/.git",
+]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.12"
+typeCheckingMode = "basic"
+useLibraryCodeForTypes = true
+reportMissingImports = true
+reportMissingTypeStubs = false
+
+[tool.pytest]
+ini_options.minversion = "8.0"
+ini_options.addopts = "--strict-config --strict-markers --benchmark-disable"
+ini_options.testpaths = [ "tests" ]
+ini_options.pythonpath = [ "." ]
+ini_options.python_files = [ "test_*.py" ]
+ini_options.python_classes = [ "Test*" ]
+ini_options.python_functions = [ "test_*" ]
+ini_options.markers = [
+  "benchmark: marks tests as performance benchmarks (deselect with '--benchmark-disable')",
+  "property: marks tests as property-based tests (run with Hypothesis)",
+]
+
+[tool.coverage]
+run.branch = true
+run.source = [ "pyprojecttest" ]
+report.exclude_lines = [
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "pragma: no cover",
+  "raise NotImplementedError",
+]
+report.fail_under = 80
+report.precision = 2
+report.show_missing = true
+report.skip_covered = false
+html.directory = "tmp/htmlcov"
+xml.output = "tmp/coverage.xml"
 
 [tool.pytest-benchmark]
 disable_gc = true
 min_rounds = 5
 warmup = true
 
-[tool.coverage.run]
-branch = true
-source = ["pyprojecttest"]
-
-[tool.coverage.report]
-skip_covered = false
-show_missing = true
-precision = 2
-fail_under = 80
-exclude_lines = [
-    "pragma: no cover",
-    "if TYPE_CHECKING:",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:",
-]
-
-[tool.coverage.html]
-directory = "tmp/htmlcov"
-
-[tool.coverage.xml]
-output = "tmp/coverage.xml"
-
-[tool.bandit]
-exclude_dirs = [
-    "tests",
-    "tmp",
-    ".venv",
-    "docs",
-    "examples",
-    ".git",
-    ".github",
-    ".pytest_cache",
-    ".mypy_cache",
-    ".ruff_cache",
-    "site",
-    ".claude",
-    ".gemini",
-    ".codex",
-    ".devcontainer",
-    ".vscode",
-]
-skips = [
-    "B101",
-    "B603",
-    "B607",
-]
-
-[tool.codespell]
-skip = "tmp,.venv,.git,*.lock,*.pyc,__pycache__"
-ignore-words-list = "crate"
-
 [tool.vulture]
 min_confidence = 80
-paths = ["src", "tests"]
+paths = [ "src", "tests" ]
 exclude = [
-    "*/tests/*",      # Test fixtures often appear unused
-    "*/__pycache__/*",
+  "*/tests/*",       # Test fixtures often appear unused
+  "*/__pycache__/*",
 ]
 # Common false positives in Python projects
 ignore_names = [
-    "test_*",         # Pytest test functions
-    "fixture_*",      # Pytest fixtures
-    "*_fixture",      # Pytest fixtures
-    "setUp",          # unittest methods
-    "tearDown",       # unittest methods
-    "setUpClass",     # unittest methods
-    "tearDownClass",  # unittest methods
+  "test_*",        # Pytest test functions
+  "fixture_*",     # Pytest fixtures
+  "*_fixture",     # Pytest fixtures
+  "setUp",         # unittest methods
+  "tearDown",      # unittest methods
+  "setUpClass",    # unittest methods
+  "tearDownClass", # unittest methods
 ]
 ignore_decorators = [
-    "@pytest.fixture",
-    "@pytest.mark.*",
-    "@click.command",
-    "@click.option",
-    "@click.group",
-    "@abstractmethod",
+  "@pytest.fixture",
+  "@pytest.mark.*",
+  "@click.command",
+  "@click.option",
+  "@click.group",
+  "@abstractmethod",
 ]
 
 [tool.mutmut]
-paths_to_mutate = ["src/"]
-tests_dir = ["tests/"]
+paths_to_mutate = [ "src/" ]
+tests_dir = [ "tests/" ]
 runner = "uv run python -m pytest -x --assert=plain"
 
 [tool.commitizen]
@@ -257,32 +258,5 @@ update_changelog_on_bump = true
 major_version_zero = true
 merge_prerelease = true
 bump_pattern = "^(feat|fix|refactor|perf)"
-bump_map = { "feat" = "MINOR", "fix" = "PATCH", "refactor" = "PATCH", "perf" = "PATCH" }
-change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf"]
-
-[tool.pyright]
-# LSP support for Claude Code - provides fast code navigation and type checking
-include = [
-    "src",
-    "tests",
-    "*.py",           # Root level Python files (dodo.py, setup-repo.py, configure.py)
-    "tools",          # Tools directory (migrate_existing_project.py)
-    ".github",        # Any Python in GitHub workflows/scripts
-]
-exclude = [
-    "**/__pycache__",
-    "**/.venv",
-    "**/tmp",
-    "**/.pytest_cache",
-    "**/.mypy_cache",
-    "**/.ruff_cache",
-    "**/site",        # mkdocs build output
-    "**/.git",
-]
-venvPath = "."
-venv = ".venv"
-pythonVersion = "3.12"
-typeCheckingMode = "basic"
-useLibraryCodeForTypes = true
-reportMissingImports = true
-reportMissingTypeStubs = false
+bump_map = { feat = "MINOR", fix = "PATCH", refactor = "PATCH", perf = "PATCH" }
+change_type_order = [ "BREAKING CHANGE", "feat", "fix", "refactor", "perf" ]
