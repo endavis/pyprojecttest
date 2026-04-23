@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776966802462,
+  "lastUpdate": 1776966841529,
   "repoUrl": "https://github.com/endavis/pyprojecttest",
   "entries": {
     "Benchmark": [
@@ -59,6 +59,65 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 6.622830412023134e-7",
             "extra": "mean: 2.0031310415563492 usec\nrounds: 44856"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6662995+endavis@users.noreply.github.com",
+            "name": "Eric Davis",
+            "username": "endavis"
+          },
+          "committer": {
+            "email": "6662995+endavis@users.noreply.github.com",
+            "name": "Eric Davis",
+            "username": "endavis"
+          },
+          "distinct": true,
+          "id": "b465e80502f5e101d6f9f2492363f60c340b9ca5",
+          "message": "chore: apply code formatting\n\n- Fix linting issues with ruff\n- Format pyproject.toml with pyproject-fmt\n- Format code with ruff\n\n🤖 Generated with setup-repo.py",
+          "timestamp": "2026-04-23T18:48:27+01:00",
+          "tree_id": "66840889caaf4f4cb72cba44711fb2b2fbdd28f0",
+          "url": "https://github.com/endavis/pyprojecttest/commit/b465e80502f5e101d6f9f2492363f60c340b9ca5"
+        },
+        "date": 1776966840983,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_default",
+            "value": 8873899.302700398,
+            "unit": "iter/sec",
+            "range": "stddev: 1.08644326187878e-8",
+            "extra": "mean: 112.69003240725213 nsec\nrounds: 87635"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_with_name",
+            "value": 8818000.75014986,
+            "unit": "iter/sec",
+            "range": "stddev: 1.1457082337468712e-8",
+            "extra": "mean: 113.4043904433786 nsec\nrounds: 89278"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_long_name",
+            "value": 5266911.482186718,
+            "unit": "iter/sec",
+            "range": "stddev: 2.241145798544577e-8",
+            "extra": "mean: 189.8645920635104 nsec\nrounds: 52643"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_logging.py::test_bench_get_logger",
+            "value": 1666388.7228864117,
+            "unit": "iter/sec",
+            "range": "stddev: 2.790862572762142e-7",
+            "extra": "mean: 600.1000764502679 nsec\nrounds: 58855"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_logging.py::test_bench_setup_logging",
+            "value": 497724.8068839193,
+            "unit": "iter/sec",
+            "range": "stddev: 5.115442439249661e-7",
+            "extra": "mean: 2.009142373796174 usec\nrounds: 52313"
           }
         ]
       }
