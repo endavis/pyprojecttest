@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776966841529,
+  "lastUpdate": 1776966849875,
   "repoUrl": "https://github.com/endavis/pyprojecttest",
   "entries": {
     "Benchmark": [
@@ -118,6 +118,65 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 5.115442439249661e-7",
             "extra": "mean: 2.009142373796174 usec\nrounds: 52313"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "6662995+endavis@users.noreply.github.com",
+            "name": "Eric Davis",
+            "username": "endavis"
+          },
+          "committer": {
+            "email": "6662995+endavis@users.noreply.github.com",
+            "name": "Eric Davis",
+            "username": "endavis"
+          },
+          "distinct": true,
+          "id": "100251cf7c00af1da18bd3f6d076122c2ae874f4",
+          "message": "chore: remove template management suite\n\nAuto-removed by setup_repo.py to keep the consumer project free of\ntemplate-only tooling:\n\n- tools/pyproject_template/ (manage.py, setup_repo.py, configure.py,\n  cleanup.py, check_template_updates.py, migrate_existing_project.py,\n  settings.py, repo_settings.py, utils.py, __init__.py)\n- docs/template/\n- bootstrap.py\n- Template nav section in mkdocs.yml\n\nTo reinstall the template-sync suite later, run:\n  curl -sSL https://raw.githubusercontent.com/endavis/pyproject-template/main/bootstrap.py \\\n      | python3 - --sync\n\n🤖 Generated with setup-repo.py",
+          "timestamp": "2026-04-23T18:48:29+01:00",
+          "tree_id": "ec4479b8ec8e8f533757cc74efd22a4c5a9c75b3",
+          "url": "https://github.com/endavis/pyprojecttest/commit/100251cf7c00af1da18bd3f6d076122c2ae874f4"
+        },
+        "date": 1776966849426,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_default",
+            "value": 8842928.343590276,
+            "unit": "iter/sec",
+            "range": "stddev: 1.321201204342709e-8",
+            "extra": "mean: 113.08471143779444 nsec\nrounds: 85978"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_with_name",
+            "value": 8815791.426948726,
+            "unit": "iter/sec",
+            "range": "stddev: 3.1296550870551314e-8",
+            "extra": "mean: 113.43281068823046 nsec\nrounds: 91241"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_core.py::test_bench_greet_long_name",
+            "value": 5092131.809527953,
+            "unit": "iter/sec",
+            "range": "stddev: 2.908699906743827e-8",
+            "extra": "mean: 196.3814051570478 nsec\nrounds: 199243"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_logging.py::test_bench_get_logger",
+            "value": 1663497.396150551,
+            "unit": "iter/sec",
+            "range": "stddev: 2.4664429897403724e-7",
+            "extra": "mean: 601.1431110827524 nsec\nrounds: 58507"
+          },
+          {
+            "name": "tests/benchmarks/test_bench_logging.py::test_bench_setup_logging",
+            "value": 486123.41152839817,
+            "unit": "iter/sec",
+            "range": "stddev: 4.955960144848765e-7",
+            "extra": "mean: 2.0570908051022396 usec\nrounds: 52453"
           }
         ]
       }
