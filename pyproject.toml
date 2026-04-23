@@ -97,10 +97,6 @@ lint.explicit-preview-rules = true
 lint.per-file-ignores."tests/benchmarks/*.py" = [
   "ANN401", # benchmark fixture has no py.typed
 ]
-lint.per-file-ignores."tools/pyproject_template/*.py" = [
-  "ANN401", # Any return type for dynamic GitHub API responses
-  "RUF022", # __all__ intentionally grouped by category, not sorted
-]
 # Enable preview mode but require rules to be listed by exact code so we
 # opt into PLW1514 without pulling in every other unstable preview rule.
 lint.preview = true
@@ -148,13 +144,9 @@ no_implicit_optional = true
 strict_equality = true
 warn_redundant_casts = true
 warn_unreachable = true
-# tools/pyproject_template/ uses sys.path manipulation for standalone execution
-exclude = [ "tools/pyproject_template/", ".claude/", ".gemini/", ".codex/" ]
+exclude = [ ".claude/", ".gemini/", ".codex/" ]
 overrides = [
   { module = "doit.*", ignore_missing_imports = true },
-  # Standalone scripts using sys.path manipulation; excluded from discovery
-  # but still followed via imports from bootstrap.py
-  { module = "tools.pyproject_template.*", follow_imports = "skip" },
 ]
 
 [tool.pyright]

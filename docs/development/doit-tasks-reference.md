@@ -42,7 +42,7 @@ doit <task_name>
 | [Release](#release-tasks) | `release`, `release_tag`, `publish` | Version and release management |
 | [Version](#version-tasks) | `bump`, `changelog` | Version bumping and changelog |
 | [Setup](#setup-tasks) | `pre_commit_install`, `completions`, `install_direnv` | Development environment |
-| [Maintenance](#maintenance-tasks) | `cleanup`, `template_clean` | Project cleanup |
+| [Maintenance](#maintenance-tasks) | `cleanup` | Project cleanup |
 
 ---
 
@@ -1067,41 +1067,6 @@ doit cleanup
 - Removes `__pycache__/` directories
 - Removes `tmp/` directory
 - Removes `.pytest_cache/`, `.mypy_cache/`, `.ruff_cache/`
-
-### `template_clean`
-
-Remove template-specific files after project setup.
-
-```bash
-# Remove setup files only (keep update checking)
-doit template_clean --setup
-
-# Remove all template files
-doit template_clean --all
-
-# Preview what would be deleted
-doit template_clean --dry-run
-```
-
-**Setup mode (`--setup`)** removes:
-- `bootstrap.py`
-- `tools/pyproject_template/setup_repo.py`
-- `tools/pyproject_template/migrate_existing_project.py`
-- `docs/template/new-project.md`
-- `docs/template/migration.md`
-
-**All mode (`--all`)** removes:
-- All setup files (above)
-- `tools/pyproject_template/` directory
-- `docs/template/` directory
-- `.config/pyproject_template/` directory
-
-**Options:**
-- `--setup`: Remove setup files only
-- `--all`: Remove all template files
-- `--dry-run`: Show what would be deleted
-
-See [Template Tools Reference](../template/tools-reference.md#cleanuppy) for details.
 
 ### `build`
 
